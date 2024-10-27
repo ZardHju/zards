@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unicode 编码转换</title>
+</head>
+<body>
+    <h1>Unicode 编码转换</h1>
+    <label for="text">输入文本:</label>
+    <input type="text" id="text"><br><br>
+    <button onclick="unicodeEncode()">编码</button>
+    <button onclick="unicodeDecode()">解码</button>
+    <p id="result"></p>
+
+    <script>
+        function unicodeEncode() {
+            const text = document.getElementById('text').value;
+            const encoded = text.split('').map(c => '\\u' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4)).join('');
+            document.getElementById('result').innerText = encoded;
+        }
+
+        function unicodeDecode() {
+            const encoded = document.getElementById('text').value;
+            const decoded = encoded.replace(/(\\u[\dA-Fa-f]{4})/gi, (match) => {
+                return String.fromCharCode(parseInt(match.slice(2), 16));
+            }).replace(/\\u/g, '\\');
+            document.getElementById('result').innerText = decoded;
+        }
+    </script>
+</body>
+</html>

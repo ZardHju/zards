@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base64 转换</title>
+</head>
+<body>
+    <h1>Base64 转换</h1>
+    <label for="text">输入文本:</label>
+    <input type="text" id="text"><br><br>
+    <button onclick="base64Encode()">编码</button>
+    <button onclick="base64Decode()">解码</button>
+    <p id="result"></p>
+
+    <script>
+        function base64Encode() {
+            const text = document.getElementById('text').value;
+            const encoded = btoa(text);
+            document.getElementById('result').innerText = encoded;
+        }
+
+        function base64Decode() {
+            const encoded = document.getElementById('text').value;
+            const decoded = atob(encoded);
+            document.getElementById('result').innerText = decoded;
+        }
+    </script>
+</body>
+</html>

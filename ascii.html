@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASCII 转换</title>
+</head>
+<body>
+    <h1>ASCII 转换</h1>
+    <label for="text">输入文本:</label>
+    <input type="text" id="text"><br><br>
+    <button onclick="asciiEncode()">编码</button>
+    <button onclick="asciiDecode()">解码</button>
+    <p id="result"></p>
+
+    <script>
+        function asciiEncode() {
+            const text = document.getElementById('text').value;
+            const encoded = text.split('').map(c => c.charCodeAt(0).toString()).join(', ');
+            document.getElementById('result').innerText = encoded;
+        }
+
+        function asciiDecode() {
+            const encoded = document.getElementById('text').value.split(', ').map(num => {
+                return String.fromCharCode(parseInt(num, 10));
+            }).join('');
+            document.getElementById('result').innerText = encoded;
+        }
+    </script>
+</body>
+</html>

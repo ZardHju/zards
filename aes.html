@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AES 加解密</title>
+</head>
+<body>
+    <h1>AES 加解密</h1>
+    <label for="text">输入文本:</label>
+    <input type="text" id="text"><br><br>
+    <label for="key">密钥:</label>
+    <input type="text" id="key"><br><br>
+    <button onclick="aesEncrypt()">加密</button>
+    <button onclick="aesDecrypt()">解密</button>
+    <p id="result"></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="crypto.js"></script>
+    <script>
+        function aesEncrypt() {
+            const text = document.getElementById('text').value;
+            const key = document.getElementById('key').value;
+            const encrypted = CryptoJS.AES.encrypt(text, key);
+            document.getElementById('result').innerText = encrypted.toString();
+        }
+
+        function aesDecrypt() {
+            const encrypted = document.getElementById('text').value;
+            const key = document.getElementById('key').value;
+            const bytes = CryptoJS.AES.decrypt(encrypted, key);
+            const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+            document.getElementById('result').innerText = decrypted;
+        }
+    </script>
+</body>
+</html>
